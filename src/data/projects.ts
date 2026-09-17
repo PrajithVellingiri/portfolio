@@ -40,7 +40,7 @@ export const projects: Project[] = [
     techStack: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     status: "COMPLETED",
     category: "WEB DEVELOPMENT",
-    liveUrl: "",
+    liveUrl: "https://webify-xi.vercel.app/",
     repoUrl: "https://github.com/PrajithVellingiri/webify",
     caseStudyUrl: "",
     featured: true,
