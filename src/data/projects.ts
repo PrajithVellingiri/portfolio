@@ -1,4 +1,4 @@
-﻿// =============================================================
+// =============================================================
 // PROJECTS DATA — 7 real projects in display order
 // =============================================================
 
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     techStack: ["Python", "Machine Learning", "Data Analysis", "Anomaly Detection", "Forecasting"],
     status: "COMPLETED",
     category: "AI / MACHINE LEARNING",
-    liveUrl: "",
+    liveUrl: "https://energy-intelligence-system.vercel.app/",
     repoUrl: "https://github.com/PrajithVellingiri/energy-intelligence-system",
     caseStudyUrl: "",
     featured: true,
