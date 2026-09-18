@@ -1,4 +1,4 @@
-﻿// =============================================================
+// =============================================================
 // LoadingScreen.tsx — Cyberpunk Boot Sequence
 // =============================================================
 
@@ -249,13 +249,13 @@ export function LoadingScreen({ onComplete }: Props) {
             {granted && (
               <motion.div
                 key="ag"
-                className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-cyber-black/70"
+                className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-cyber-black/80 px-4 text-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.25 }}
               >
                 <motion.p
-                  className="font-orbitron text-3xl font-black tracking-[0.2em] text-neon-yellow text-glow-yellow sm:text-5xl"
+                  className="font-orbitron text-2xl sm:text-5xl font-black tracking-[0.12em] sm:tracking-[0.2em] text-neon-yellow text-glow-yellow text-center w-full"
                   style={{ fontFamily: 'Orbitron, sans-serif' }}
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -264,7 +264,7 @@ export function LoadingScreen({ onComplete }: Props) {
                   ACCESS GRANTED.
                 </motion.p>
                 <motion.p
-                  className="mt-4 font-mono text-xs tracking-[0.5em] text-neon-green"
+                  className="mt-4 font-mono text-[11px] sm:text-xs tracking-[0.3em] sm:tracking-[0.5em] text-neon-green text-center w-full"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}

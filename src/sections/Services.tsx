@@ -1,4 +1,4 @@
-﻿// =============================================================
+// =============================================================
 // Services.tsx â€” Freelancing Services Section
 // =============================================================
 
@@ -210,24 +210,27 @@ export function Services() {
             or automation pipeline â€” I&apos;m ready to deploy.
           </p>
 
-          {/* Primary CTA */}
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-3 font-mono text-sm tracking-widest px-8 py-4 border border-neon-yellow text-neon-yellow hover:bg-neon-yellow hover:text-cyber-black transition-all duration-300 mb-4 mr-4"
-            style={{ boxShadow: '0 0 20px rgba(245,230,66,0.2)' }}
-          >
-            [ INITIATE CONTACT ]
-            <ArrowRight size={16} />
-          </a>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-2">
+            {/* Primary CTA */}
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest px-6 sm:px-8 py-3.5 sm:py-4 border border-neon-yellow text-neon-yellow hover:bg-neon-yellow hover:text-cyber-black transition-all duration-300 whitespace-nowrap"
+              style={{ boxShadow: '0 0 20px rgba(245,230,66,0.2)' }}
+            >
+              [ INITIATE CONTACT ]
+              <ArrowRight size={16} />
+            </a>
 
-          {/* Secondary: email */}
-          <a
-            href={`mailto:${socialLinks.email}`}
-            className="inline-flex items-center gap-2 font-mono text-sm tracking-wider text-cyber-dim hover:text-neon-cyan transition-colors duration-300 px-4 py-4"
-          >
-            <Mail size={14} />
-            {DISPLAY_EMAIL}
-          </a>
+            {/* Secondary: email */}
+            <a
+              href={`mailto:${socialLinks.email}`}
+              className="inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-sm tracking-wider text-cyber-dim hover:text-neon-cyan transition-colors duration-300 px-4 py-3 sm:py-4 text-center break-all"
+            >
+              <Mail size={14} className="flex-shrink-0" />
+              {DISPLAY_EMAIL}
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

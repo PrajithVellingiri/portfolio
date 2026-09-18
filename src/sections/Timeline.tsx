@@ -1,4 +1,4 @@
-﻿// =============================================================
+// =============================================================
 // Timeline.tsx — System Timeline / Journey Section
 // =============================================================
 
@@ -152,19 +152,24 @@ function TimelineItem({ entry, index, isLeft, reducedMotion }: ItemProps) {
         </motion.div>
       </div>
 
-      {/* -- Mobile left line connector ---------------------- */}
+      {/* -- Mobile left timeline dot & connector -- */}
       <div
-        className="md:hidden absolute left-4 top-0 bottom-0 w-px"
-        style={{ background: `linear-gradient(to bottom, ${cfg.color}88, transparent)` }}
+        className="md:hidden absolute -left-6 top-9 w-6 h-px"
+        style={{ background: `linear-gradient(90deg, ${cfg.color}, transparent)` }}
       />
       <div
-        className="md:hidden absolute left-2 top-7 w-4 h-4 rounded-full border-2"
+        className="md:hidden absolute -left-8 top-7 w-4 h-4 rounded-full border-2 flex items-center justify-center"
         style={{
           borderColor: cfg.color,
           background:  '#050508',
-          boxShadow:   `0 0 8px ${cfg.color}`,
+          boxShadow:   `0 0 10px ${cfg.color}, 0 0 20px ${cfg.color}44`,
         }}
-      />
+      >
+        <div
+          className={`w-1.5 h-1.5 rounded-full ${cfg.dotClass}`}
+          style={{ background: cfg.color }}
+        />
+      </div>
     </div>
   );
 }
