@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
+import { personalInfo } from '../data/personalInfo';
 
 /* ─────────────────────── Nav links ───────────────────────────── */
 
@@ -38,8 +39,11 @@ const navbarCSS = `
     transition: color 0.2s ease;
     padding-bottom: 4px;
     white-space: nowrap;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(245, 230, 66, 0.15);
   }
-  .nav-link-item:hover { color: #F5E642; }
+  .nav-link-item:hover,
+  .nav-link-item:active { color: #F5E642; }
   .nav-link-item.active { color: #F5E642; }
   .nav-link-item::after {
     content: '';
@@ -110,12 +114,26 @@ export function Navbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: shouldReduceMotion ? 'auto' : 'smooth' });
+
+    setTimeout(() => {
+      const target = document.querySelector(href);
+      if (target) {
+        const navHeight = 64;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: shouldReduceMotion ? 'auto' : 'smooth',
+        });
+      } else {
+        window.location.hash = href;
+      }
+    }, 80);
   };
 
   const mobileMenuVariants = {
-    closed: { height: 0, opacity: 0, transition: { duration: 0.25, ease: 'easeInOut' as const } },
-    open:   { height: 'auto', opacity: 1, transition: { duration: 0.3,  ease: 'easeOut'  as const } },
+    closed: { height: 0, opacity: 0, transition: { duration: 0.2, ease: 'easeInOut' as const } },
+    open:   { height: 'auto', opacity: 1, transition: { duration: 0.25, ease: 'easeOut' as const } },
   };
 
   return (
@@ -126,10 +144,10 @@ export function Navbar() {
         role="navigation"
         aria-label="Main navigation"
         style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9000,
-          background: 'rgba(5,5,8,0.92)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10000,
+          background: 'rgba(5,5,8,0.95)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
           borderBottom: scrolled ? '1px solid rgba(245,230,66,0.25)' : '1px solid transparent',
           boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.6)' : 'none',
           transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
@@ -167,7 +185,7 @@ export function Navbar() {
               whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
             >
-              [YN]
+              [{personalInfo.nameShort}]
             </motion.div>
           </a>
 
@@ -194,7 +212,10 @@ export function Navbar() {
             className="hamburger-btn"
             style={{
               display: 'none', flexDirection: 'column', gap: '5px',
-              background: 'transparent', border: 'none', cursor: 'pointer', padding: '4px', outline: 'none',
+              background: 'transparent', border: 'none', cursor: 'pointer', padding: '10px', outline: 'none',
+              touchAction: 'manipulation',
+              minWidth: '44px', minHeight: '44px',
+              alignItems: 'center', justifyContent: 'center',
             }}
           >
             <span className="hamburger-line" style={{ transform: mobileOpen ? 'translateY(7px) rotate(45deg)' : 'none' }} />
@@ -212,7 +233,12 @@ export function Navbar() {
               animate="open"
               exit="closed"
               variants={shouldReduceMotion ? {} : mobileMenuVariants}
-              style={{ overflow: 'hidden', background: 'rgba(5,5,8,0.97)', borderTop: '1px solid rgba(245,230,66,0.18)' }}
+              style={{
+                overflow: 'hidden',
+                background: 'rgba(5,5,8,0.98)',
+                borderTop: '1px solid rgba(245,230,66,0.18)',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.8)',
+              }}
             >
               <div style={{ display: 'flex', flexDirection: 'column', padding: '0.5rem 0' }}>
                 {NAV_LINKS.map((link, i) => (
@@ -221,10 +247,18 @@ export function Navbar() {
                     href={link.href}
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: shouldReduceMotion ? 0 : i * 0.04, duration: 0.2 }}
+                    transition={{ delay: shouldReduceMotion ? 0 : i * 0.03, duration: 0.2 }}
                     className={`nav-link-item ${activeSection === link.sectionId ? 'active' : ''}`}
                     onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, link.href)}
-                    style={{ display: 'block', padding: '0.75rem 1.5rem', fontSize: '0.72rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{
+                      display: 'block',
+                      padding: '0.85rem 1.5rem',
+                      fontSize: '0.75rem',
+                      borderBottom: '1px solid rgba(255,255,255,0.04)',
+                      touchAction: 'manipulation',
+                      cursor: 'pointer',
+                    }}
                     aria-current={activeSection === link.sectionId ? 'page' : undefined}
                   >
                     {link.label}
