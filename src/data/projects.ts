@@ -76,9 +76,9 @@ export const projects: Project[] = [
   },
   {
     id: "PRJ-005",
-    name: "FREELANCE PORTFOLIO PLATFORM",
-    description: "A responsive portfolio platform concept focused on presenting professional services, projects, experience, and client-facing information.",
-    longDescription: "A concept-stage portfolio web platform designed specifically for freelancers and independent professionals. Showcases services, past work, client testimonials, and contact workflows in a clean, modern interface.",
+    name: "MY PORTFOLIO",
+    description: "A responsive cyberpunk-themed personal portfolio platform presenting professional services, projects, experience, and contact information.",
+    longDescription: "A modern, immersive portfolio web platform designed with a cyberpunk aesthetic to showcase full-stack projects, artificial intelligence solutions, technical capabilities, and freelance services.",
     techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
     status: "COMPLETED",
     category: "WEB DEVELOPMENT",
