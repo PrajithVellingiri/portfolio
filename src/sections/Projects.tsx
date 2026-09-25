@@ -1,4 +1,4 @@
-﻿// =============================================================
+// =============================================================
 // Projects.tsx Ã¢â‚¬â€ Project Database Section
 // =============================================================
 
@@ -39,10 +39,16 @@ const CATEGORY_COLOR: Record<string, string> = {
 };
 
 // Ã¢â€â‚¬Ã¢â€â‚¬ Status config Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
-const STATUS_CONFIG = {
+const STATUS_CONFIG: Record<string, { label: string; color: string; pulse: boolean; dim: boolean }> = {
   COMPLETED:      { label: 'COMPLETED',      color: '#39FF14', pulse: false, dim: false },
   'IN DEVELOPMENT': { label: 'IN DEVELOPMENT', color: '#F5E642', pulse: true,  dim: false },
   ARCHIVED:       { label: 'ARCHIVED',       color: '#6B6B8A', pulse: false, dim: true  },
+  'WEBSITE DOWN, DOING UPDATES / ON PRODUCTION': {
+    label: 'WEBSITE DOWN, DOING UPDATES / ON PRODUCTION',
+    color: '#FF3131',
+    pulse: true,
+    dim: false,
+  },
 };
 
 // Ã¢â€â‚¬Ã¢â€â‚¬ Grid coordinates decoration Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
@@ -62,7 +68,12 @@ function ProjectCard({ project, index, reducedMotion }: CardProps) {
   const ref     = useRef<HTMLDivElement>(null);
   const inView  = useInView(ref, { once: true, margin: '-60px' });
   const accentColor = CATEGORY_COLOR[project.category] ?? '#00FFFF';
-  const statusCfg   = STATUS_CONFIG[project.status] ?? STATUS_CONFIG.COMPLETED;
+  const statusCfg   = STATUS_CONFIG[project.status] ?? {
+    label: project.status,
+    color: '#FF3131',
+    pulse: true,
+    dim: false,
+  };
   const coord       = GRID_COORDS[index % GRID_COORDS.length];
 
   return (

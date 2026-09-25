@@ -8,7 +8,7 @@ export interface Project {
   description: string;
   longDescription: string;
   techStack: string[];
-  status: "COMPLETED" | "IN DEVELOPMENT" | "ARCHIVED";
+  status: "COMPLETED" | "IN DEVELOPMENT" | "ARCHIVED" | "WEBSITE DOWN, DOING UPDATES / ON PRODUCTION" | string;
   category: string;
   liveUrl: string;     // Empty string = button hidden
   repoUrl: string;     // Empty string = button hidden
@@ -66,9 +66,9 @@ export const projects: Project[] = [
     description: "An AI-powered petitioning platform designed to help users create, structure, and process civic petitions more intelligently.",
     longDescription: "An intelligent civic platform that leverages AI to guide users through petitioning processes. Helps structure petition content, identify relevant authorities, and improve the quality and reach of civic submissions.",
     techStack: ["React", "TypeScript", "AI", "Python", "FastAPI"],
-    status: "COMPLETED",
+    status: "WEBSITE DOWN, DOING UPDATES / ON PRODUCTION",
     category: "AI-BASED WEB",
-    liveUrl: "https://insight-gov-delta.vercel.app/",
+    liveUrl: "",
     repoUrl: "https://github.com/PrajithVellingiri/insight-gov",
     caseStudyUrl: "",
     featured: false,
